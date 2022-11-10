@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BookBob_Bootstrap.Models.Book>
+
+@{
+    ViewData["Title"] = "nonAdmin";
+}
+
+<h1>Books</h1>
+<p>
+    <a asp-action="logout" asp-controller="user">Logout</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuthName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                Poster
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuthName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                <img src="@Html.Raw(item.Url)" width=100 height=100/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
